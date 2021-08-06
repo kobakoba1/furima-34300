@@ -1,17 +1,20 @@
 ## users テーブル
 
-| Column             | Type    | Options                   |
-| ------------------ | ------- | ------------------------- |
-| email              | string  | unique: true, null: false |
-| encrypted_password | string  | null: false               |
-| nickname           | string  | null: false               |
-| name               | string  | null: false               |
-| birthday           | date    | null: false               |
+| Column              | Type    | Options                   |
+| ------------------- | ------- | ------------------------- |
+| email               | string  | unique: true, null: false |
+| encrypted_password  | string  | null: false               |
+| nickname            | string  | null: false               |
+| first_name          | string  | null: false               |
+| last_name           | string  | null: false               |
+| furigana_first_name | string  | null: false               |
+| furigana_last_name  | string  | null: false               |
+| birthday            | date    | null: false               |
 
 ### Association
 
 - has_many :items
-- has_many :purchase-records
+- has_many :purchase_records
 
 ## items テーブル
 
@@ -29,8 +32,8 @@
 
 ### Association
 
-- belongs_to :users
-- has_one :shipping-info
+- belongs_to :user
+- has_one :shipping_info
 
 ## purchase_records テーブル
 
@@ -42,21 +45,22 @@
 ### Association
 
 - has_one :shipping-info
-- belongs_to :users
+- belongs_to :user
 
-## shipping_info テーブル
+## shipping_infos テーブル
 
 | Column           | Type         | Options            |
 | ---------------- | ------------ | ------------------ |
 | postal_code      | string       | null: false        |
-| prefectures      | string       | null: false        |
+| prefectures_id   | integer      | null: false        |
 | municipalities   | string       | null: false        |
 | address          | string       | null: false        |
 | phone_number     | string       | null: false        |
 | user             | references   | foreign_key: true  |
 | item             | references   | foreign_key: true  |
+| building_name    | string       | null: false        |
 
 ### Association
 
-- belongs_to :purchase-records
+- belongs_to :purchase_records
 - belongs_to :items
