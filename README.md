@@ -29,11 +29,12 @@
 | delivery_fee_id   | integer    | null: false       |
 | ship_form_id      | integer    | null: false       |
 | until_ship_day_id | integer    | null: false       |
+| prefectures_id    | integer    | null: false       |
 
 ### Association
 
 - belongs_to :user
-- has_one :shipping_info
+- has_one :purchase_record
 
 ## purchase_records テーブル
 
@@ -46,6 +47,7 @@
 
 - has_one :shipping-info
 - belongs_to :user
+- belongs_to :item
 
 ## shipping_infos テーブル
 
@@ -56,11 +58,9 @@
 | municipalities   | string       | null: false        |
 | address          | string       | null: false        |
 | phone_number     | string       | null: false        |
-| user             | references   | foreign_key: true  |
-| item             | references   | foreign_key: true  |
 | building_name    | string       | null: false        |
+| purchase_record  | references   | foreign_key: true  |
 
 ### Association
 
-- belongs_to :purchase_records
-- belongs_to :items
+- belongs_to :purchase_record
