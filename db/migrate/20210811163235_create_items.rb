@@ -5,12 +5,12 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.references :user, foreign_key: true
       t.string :title
       t.text :concept
-      t.integer :category_id
-      t.integer :item_condition_id
-      t.integer :delivery_fee_id
-      t.integer :ship_form_id
-      t.integer :until_ship_day_id
-      t.integer :prefectures_id
+      t.integer :category_id, null: false
+      t.integer :item_condition_id, null: false
+      t.integer :delivery_fee_id, null: false
+      t.integer :ship_form_id, null: false
+      t.integer :until_ship_day_id, null: false
+      t.integer :prefectures_id, null: false
       t.timestamps
     end
   end
