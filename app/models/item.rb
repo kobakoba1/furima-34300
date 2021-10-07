@@ -16,7 +16,11 @@ class Item < ApplicationRecord
   validates :ship_form, presence: true
   validates :until_ship_day, presence: true
   validates :price, presence: true
-  validates :genre_id, numericality: { other_than: 1 , message: "can't be blank"}
-  
+  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :item_condition_id, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :delivery_fee_id, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :ship_form_id, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :until_ship_day_id, numericality: { other_than: 1 , message: "can't be blank"}
+
   # belongs_to :user
 end
