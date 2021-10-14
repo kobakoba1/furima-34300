@@ -60,9 +60,17 @@ RSpec.describe Item, type: :model do
     end
     
     it '販売価格は、¥300~¥9,999,999の間のみ保存可能であること' do
-      
+      @item.price = '299'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
     end
     
+    it '販売価格は、¥300~¥9,999,999の間のみ保存可能であること' do
+      @item.price = '10000000'
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Price is not included in the list")
+    end
+
     it '販売価格は半角数字のみ保存可能であること' do
       @item.price = "１２３"
       @item.valid?
