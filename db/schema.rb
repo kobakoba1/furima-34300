@@ -43,12 +43,11 @@ ActiveRecord::Schema.define(version: 2021_10_01_094544) do
     t.bigint "user_id"
     t.string "title"
     t.text "concept"
-    t.integer "category_id"
-    t.integer "item_condition_id"
-    t.integer "delivery_fee_id"
-    t.integer "ship_form_id"
-    t.integer "until_ship_day_id"
-    t.integer "prefectures_id"
+    t.integer "category_id", null: false
+    t.integer "item_condition_id", null: false
+    t.integer "delivery_fee_id", null: false
+    t.integer "ship_form_id", null: false
+    t.integer "until_ship_day_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_items_on_user_id"
