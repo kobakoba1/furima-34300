@@ -14,10 +14,6 @@ RSpec.describe PurchaseForm, type: :model do
       expect(@purchase_form).to be_valid
     end
     
-    it 'クレジットカード情報は必須であり、正しいクレジットカードの情報で無いときは決済できないこと' do
-
-    end
-    
     it '郵便番号が必須であること' do
       @purchase_form.postal_code = ''
       @purchase_form.valid?
@@ -58,6 +54,12 @@ RSpec.describe PurchaseForm, type: :model do
       @purchase_form.phone_number = '0901234567'
       @purchase_form.valid?
       expect(@purchase_form.errors.full_messages).to include("Phone number is only numbers within 11")
+    end
+
+    it "tokenが空では登録できないこと" do
+      @purchase_form.token = nil
+      @purchase_form.valid?
+      expect(@purchase_form.errors.full_messages).to include("Token can't be blank")
     end
   end  
 end
