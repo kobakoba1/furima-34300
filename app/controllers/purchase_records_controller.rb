@@ -1,5 +1,6 @@
 class PurchaseRecordsController < ApplicationController
-    before_action :authenticate_user!, only: [:index, :create]
+  before_action :authenticate_user!, only: [:index, :create]
+  before_action :prevent_url, only: [:index, :create]
 
   def index
     @purchase_form = PurchaseForm.new
@@ -34,4 +35,11 @@ class PurchaseRecordsController < ApplicationController
       )
   end
 
+
+  def prevent_url
+    @item = Item.find(params[:item_id])
+    if @item.user_id == current_user.id || @item.purchase_record != nil
+      redirect_to root_path
+    end
+  end    
 end
