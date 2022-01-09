@@ -61,5 +61,34 @@ RSpec.describe PurchaseForm, type: :model do
       @purchase_form.valid?
       expect(@purchase_form.errors.full_messages).to include("Token can't be blank")
     end
+
+    it "建物名がなくても購入ができること" do
+      @purchase_form.building_name = ''
+      expect(@purchase_form).to be_valid
+    end
+  
+    it "ship_form_idが1だと購入できない" do
+      @purchase_form.ship_form_id = '1'
+      @purchase_form.valid?
+      expect(@purchase_form.errors.full_messages).to include("Ship form can't be blank")
+    end
+
+    it "電話番号は英数混合では登録できないこと" do
+      @purchase_form.phone_number = '090abcdefgh'
+      @purchase_form.valid?
+      expect(@purchase_form.errors.full_messages).to include("Phone number is only numbers within 11")
+    end
+
+    it "userが紐付いていなければ登録できない" do
+      @purchase_form.user_id = nil
+      @purchase_form.valid?
+      expect(@purchase_form.errors.full_messages).to include("User can't be blank")
+    end
+
+    it "商品が紐付いていなければ登録できない" do
+      @purchase_form.item_id = nil
+      @purchase_form.valid?
+      expect(@purchase_form.errors.full_messages).to include("Item can't be blank")
+    end
   end  
 end
