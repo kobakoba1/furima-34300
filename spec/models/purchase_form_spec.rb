@@ -82,6 +82,12 @@ RSpec.describe PurchaseForm, type: :model do
         expect(@purchase_form.errors.full_messages).to include("Phone number is only numbers within 11")
       end
 
+      it "電話番号が12桁以上だと保存できないこと" do
+        @purchase_form.phone_number = '090123456789'
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include("Phone number is only numbers within 11")
+      end
+
       it "userが紐付いていなければ登録できない" do
         @purchase_form.user_id = nil
         @purchase_form.valid?
